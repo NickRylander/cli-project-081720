@@ -2,16 +2,23 @@ class Scraper
 
     WORKOUT_URL = "https://www.crossfit.com/workout"
     RELATIVE_URL = "https://www.crossfit.com"
-    def get_path
+
+    def self.scrape_workouts
         html = open(WORKOUT_URL)
-        doc = Nokogiri::HTML(open(html))
+        doc = Nokogiri::HTML(html)
         doc.css(".row.content-container").each do | workout |
             date = workout.css(".show a").text.strip
             url = workout.css("a").attr("href").value
-            binding.pry
+            Workout.new(date, url)
         end
     end
-
+    def self.scrape_details(workout)
+        html = open(RELATIVE_URL+workout.url)
+        doc = Nokogiri::HTML(html)
+        workout.day = doc.css("div[_2DHczaLT0rj8e9YIvN_rJG]").attr("span[_3l95QWdJm-5FhMc3sTpEC1]").value
+        workout.details
+        binding.pry
+    end
 
 end
 
