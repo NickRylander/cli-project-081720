@@ -1,7 +1,7 @@
 class CLI
     def run
         puts "Welcome to the CrossFit Workout of the Day!"
-        puts "Please choose a day to see the details of each workout: "
+        puts "Please choose a number (1 - 31) to see the details of each workout: "
         Scraper.scrape_workouts
         list_workouts
         menu
@@ -42,6 +42,6 @@ class CLI
         Scraper.scrape_details(workout)
         puts "Just incase you forgot the day you wanted, it was #{workout.day}!\n\n"
         puts "Workout Details:\n\n"
-        puts "#{workout.details}"
+        puts "#{workout.details}\n ---END---"
     end
 end
