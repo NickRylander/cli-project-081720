@@ -7,10 +7,10 @@ class Scraper
     def self.scrape_months
         html = open(MONTH_URL)
         doc = Nokogiri::HTML(html)
-        doc.css("select#monthFilter.form-control.input-sm").each do |month|
+        doc.css("div.col-sm-2.col-md-2").each do |month|
             binding.pry
-            months = month.css(".option").attr("value=").text
-            m_url = month.css("value").text
+            months = month.css("select#monthFilter.form-control.input-sm").text
+            m_url = month.css("option").text
             Month.new(months, m_url)
         end
     end
