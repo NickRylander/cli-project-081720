@@ -1,8 +1,8 @@
 class CLI
     def run
         puts "Welcome to the CrossFit Workout of the Day!"
-        puts "Please choose a number (1 - 31) to see the details of each workout: "
         Scraper.scrape_workouts
+        puts "Please choose a number (1 - #{Workout.all.length}) to see the details of each workout: "
         list_workouts
         menu
     end
@@ -21,10 +21,11 @@ class CLI
             puts "Great choice! Ready to sweat?"
             workout = Workout.all[input.to_i-1]
             display_details(workout)
+            puts "Haven't had enough?! Want to see another?"
+            puts "Type \"Y\" for more soul crushing or \"N\" for soul already crushed."
+            another_workout = gets.chomp.downcase
         end
-        puts "Haven't had enough?! Want to see another?"
-        puts "Type \"Y\" for more soul crushing or \"N\" for soul already crushed."
-        another_workout = gets.chomp.downcase
+        # another_workout = gets.chomp.downcase
         if another_workout == "y"
             puts "You're crazy, but I like it."
             list_workouts
@@ -32,9 +33,9 @@ class CLI
         elsif another_workout == "n"
             puts "Go take a nap!"
             exit
-        else
-            puts "You're not making any sense."
-            list_workouts
+        elsif !another_workout.to_i.between?(1, Workout.all.length)
+            # puts "You're not making any sense."
+            # list_workouts
             menu
         end
     end
