@@ -15,8 +15,9 @@ class CLI
     #     end
     # end
     def list_months
-        Month.all.each.with_index(1) do | i, mon |
-            puts "#{i}. #{mon.name}"
+        Month.all.each.with_index(1) do | name, i|
+            puts "#{i}. #{name.mon}"
+            # binding.pry
         end
     end
     # def menu

@@ -7,15 +7,14 @@ class Scraper
     def self.scrape_months
         html = open(MONTH_URL)
         doc = Nokogiri::HTML(html)
-        doc.css("div.col-sm-2.col-md-2").each do |month|
-            months = month.css("select#monthFilter.form-control.input-sm").text.strip.split("\n                ").slice(1, 13)
-              months.each do |name| 
-                position, mon = name.split(" - ")
-                puts mon
-                Month.new(mon) 
-                binding.pry
+        # doc.css("div.col-sm-2.col-md-2").each do |month|
+        doc.css("select#monthFilter.form-control.input-sm").text.strip.split("\n                ").slice(1, 13).each do |name|
+            # months.each do |name| 
+            position, mon = name.split(" - ")
+            # binding.pry
+            Month.new(mon) 
             end
-        end
+        # end
     end
     # def self.scrape_workouts
     #     html = open(WORKOUT_URL)
