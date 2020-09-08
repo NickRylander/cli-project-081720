@@ -1,8 +1,8 @@
 class CLI
     def run
         puts "Welcome to the CrossFit Workout of the Day!"
-        Scraper.scrape_months
         puts "Please choose a month!"
+        Scraper.scrape_months
         list_months
         # Scraper.scrape_workouts
         # puts "Please choose a number (1 - #{Workout.all.length}) to see the details of each workout: "
@@ -15,8 +15,8 @@ class CLI
     #     end
     # end
     def list_months
-        Month.all.each.with_index(1) do | month, i |
-            puts "#{i}. #{month.months}"
+        Month.all.each.with_index(1) do | i, mon |
+            puts "#{i}. #{mon.name}"
         end
     end
     # def menu

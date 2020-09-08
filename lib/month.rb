@@ -1,12 +1,10 @@
 class Month
     @@all = []
 
-    attr_accessor :months, :name
+    attr_accessor :mon
 
-    def initialize(months, name)
-        @months = months
-        @name = name
-        # @m_url = m_option
+    def initialize(mon)
+        @mon = mon
         @@all << self
     end
 
