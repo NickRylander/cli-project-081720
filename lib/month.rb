@@ -1,7 +1,7 @@
 class Month
     @@all = []
 
-    attr_accessor :mon, :position
+    attr_accessor :mon, :position, :day
 
     def initialize(mon, position)
         @mon = mon
