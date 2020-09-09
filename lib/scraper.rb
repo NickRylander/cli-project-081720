@@ -17,7 +17,6 @@ class Scraper
         doc = Nokogiri::HTML(html)
         doc.css("section#archives.section").css(".show a").each do |day|
             date, year_month_day = day.text.split
-            # binding.pry
             Day.new(date, year_month_day)
         end
     end
@@ -25,7 +24,6 @@ class Scraper
 
 
 
-    
 
 end
     # def self.scrape_workouts

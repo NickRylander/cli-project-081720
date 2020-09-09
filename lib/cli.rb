@@ -5,16 +5,10 @@ class CLI
         Scraper.scrape_months
         list_months
         month_menu
-        # Scraper.scrape_workouts
-        # puts "Please choose a number (1 - #{Workout.all.length}) to see the details of each workout: "
-        # list_workouts
-        # menu
     end
-    def list_months
-        Month.all.each.with_index(1) do | name, i|
-            puts "#{i}. #{name.mon}"
-        end
-    end
+
+    # -------------------- MENUS --------------------
+
     def month_menu
         puts "Please type in the number that associates with the month you'd like to see!"
         input = gets.chomp
@@ -27,20 +21,37 @@ class CLI
             month_details(name)
         end
     end
+
+    # -------------------- DETAILS --------------------
+
     def month_details(name)
         Scraper.scrape_month_details(name)
         puts "You chose: #{name.mon}.\n\n"
         puts "Here is a list of all the days in #{name.mon}:\n\n"
         list_days
     end
+
+    # --------------------- LISTS --------------------
+
+    def list_months
+        Month.all.each.with_index(1) do | name, i|
+            puts "#{i}. #{name.mon}"
+        end
+    end
     def list_days
         Day.all.each.with_index(1) do | day, i|
             puts "#{i}. #{day.date}"
         end
     end
-
-
 end
+
+
+
+
+
+
+
+
 #     def day_menu
 #         puts "Please type a number to see the workout for that day!"
 #         input = gets.chomp
@@ -72,9 +83,6 @@ end
 #         puts "Workout Details:\n\n"
 #         puts "#{workout.details}\n ---END---"
 #     end
-
-
-
 #     # def list_workouts
 #     #     Workout.all.each.with_index(1) do | workout, i |
 #     #         puts "#{i}. #{workout.date}"

@@ -6,8 +6,6 @@ class Month
     def initialize(mon, position)
         @mon = mon
         @position = position
-        # @every_day = every_day
-        # @day_url = day_url
         @@all << self
     end
 
