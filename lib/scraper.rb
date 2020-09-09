@@ -1,8 +1,7 @@
 class Scraper
 
-    WORKOUT_URL = "https://www.crossfit.com/workout"
-    RELATIVE_URL = "https://www.crossfit.com"
     MONTH_URL = "https://www.crossfit.com/workout/2020"
+    RELATIVE_URL = "https://www.crossfit.com"
 
     def self.scrape_months
         html = open(MONTH_URL)
@@ -16,11 +15,15 @@ class Scraper
         html = open(MONTH_URL+"/"+name.position)
         doc = Nokogiri::HTML(html)
         doc.css("section#archives.section").css(".show a").each do |day|
-            date, year_month_day = day.text.split
-            Day.new(date, year_month_day)
+            date, url = day.text.split
+            Day.new(date, url)
         end
     end
-
+    def self.scrape_details(day)
+        html = open(RELATIVE_URL+day.url)
+        doc = Nokogiri::HTML(html)
+        day.details = doc.css("div._6zX5t4v71r1EQ1b1O0nO2 jYZW249J9cFebTPrzuIl0").text
+    end
 
 
 

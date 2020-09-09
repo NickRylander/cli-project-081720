@@ -21,6 +21,31 @@ class CLI
             month_details(name)
         end
     end
+    def day_menu
+        puts "Please type a number to see the workout for that day!"
+        input = gets.chomp
+        if !input.to_i.between?(1, Day.all.length)
+            puts "Please choose a number from the list! ;)"
+            list_days
+        else
+            puts "Great choice! Ready to sweat?"
+            workout = Day.all[input.to_i-1]
+            display_details(day)
+            puts "Haven't had enough?! Want to see another?"
+            puts "Type \"Y\" for more soul crushing or \"N\" for soul already crushed."
+            another_workout = gets.chomp.downcase
+        end
+        if another_workout == "y"
+            puts "You're crazy, but I like it."
+            list_days
+            day_menu
+        elsif another_workout == "n"
+            puts "Go take a nap!"
+            exit
+        elsif !another_workout.to_i.between?(1, Day.all.length)
+            day_menu
+        end
+    end
 
     # -------------------- DETAILS --------------------
 
@@ -29,6 +54,12 @@ class CLI
         puts "You chose: #{name.mon}.\n\n"
         puts "Here is a list of all the days in #{name.mon}:\n\n"
         list_days
+        workout_menu
+    end
+    def display_details(day)
+        Scraper.scrape_details(day)
+        puts "Workout Details:\n\n"
+        puts "#{day.details}\n ---END---"
     end
 
     # --------------------- LISTS --------------------
