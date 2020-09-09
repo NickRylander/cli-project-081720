@@ -10,11 +10,6 @@ class CLI
         # list_workouts
         # menu
     end
-    # def list_workouts
-    #     Workout.all.each.with_index(1) do | workout, i |
-    #         puts "#{i}. #{workout.date}"
-    #     end
-    # end
     def list_months
         Month.all.each.with_index(1) do | name, i|
             puts "#{i}. #{name.mon}"
@@ -32,37 +27,6 @@ class CLI
             month_details(name)
         end
     end
-    # def menu
-    #     puts "Please type a number to see the workout for that day!"
-    #     input = gets.chomp
-    #     if !input.to_i.between?(1, Workout.all.length)
-    #         puts "Please choose a number from the list! ;)"
-    #         list_workouts
-    #     else
-    #         puts "Great choice! Ready to sweat?"
-    #         workout = Workout.all[input.to_i-1]
-    #         display_details(workout)
-    #         puts "Haven't had enough?! Want to see another?"
-    #         puts "Type \"Y\" for more soul crushing or \"N\" for soul already crushed."
-    #         another_workout = gets.chomp.downcase
-    #     end
-    #     if another_workout == "y"
-    #         puts "You're crazy, but I like it."
-    #         list_workouts
-    #         menu
-    #     elsif another_workout == "n"
-    #         puts "Go take a nap!"
-    #         exit
-    #     elsif !another_workout.to_i.between?(1, Workout.all.length)
-    #         menu
-    #     end
-    # end
-    # def display_details(workout)
-    #     Scraper.scrape_details(workout)
-    #     puts "Just incase you forgot the day you wanted, it was #{workout.day}!\n\n"
-    #     puts "Workout Details:\n\n"
-    #     puts "#{workout.details}\n ---END---"
-    # end
     def month_details(name)
         Scraper.scrape_month_details(name)
         puts "You chose: #{name.mon}.\n\n"
@@ -74,4 +38,45 @@ class CLI
             puts "#{i}. #{day.date}"
         end
     end
+
+
 end
+#     def day_menu
+#         puts "Please type a number to see the workout for that day!"
+#         input = gets.chomp
+#         if !input.to_i.between?(1, Workout.all.length)
+#             puts "Please choose a number from the list! ;)"
+#             list_days
+#         else
+#             puts "Great choice! Ready to sweat?"
+#             workout = Workout.all[input.to_i-1]
+#             display_details(workout)
+#             puts "Haven't had enough?! Want to see another?"
+#             puts "Type \"Y\" for more soul crushing or \"N\" for soul already crushed."
+#             another_workout = gets.chomp.downcase
+#         end
+#         if another_workout == "y"
+#             puts "You're crazy, but I like it."
+#             list_days
+#             day_menu
+#         elsif another_workout == "n"
+#             puts "Go take a nap!"
+#             exit
+#         elsif !another_workout.to_i.between?(1, Workout.all.length)
+#             day_menu
+#         end
+#     end
+#     def display_details(workout)
+#         Scraper.scrape_details(workout)
+#         puts "Just incase you forgot the day you wanted, it was #{workout.day}!\n\n"
+#         puts "Workout Details:\n\n"
+#         puts "#{workout.details}\n ---END---"
+#     end
+
+
+
+#     # def list_workouts
+#     #     Workout.all.each.with_index(1) do | workout, i |
+#     #         puts "#{i}. #{workout.date}"
+#     #     end
+#     # end

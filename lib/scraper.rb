@@ -21,6 +21,13 @@ class Scraper
             Day.new(date, year_month_day)
         end
     end
+
+
+
+
+    
+
+end
     # def self.scrape_workouts
     #     html = open(WORKOUT_URL)
     #     doc = Nokogiri::HTML(html)
@@ -37,5 +44,3 @@ class Scraper
     #     workout.day = doc.css("._2DHczaLT0rj8e9YIvN_rJG ._3l95QWdJm-5FhMc3sTpEC1").text
     #     workout.details = doc.css(".sf1KM0yG_abhAm_QFxP7E ._6zX5t4v71r1EQ1b1O0nO2.jYZW249J9cFebTPrzuIl0").text
     # end
-
-end
