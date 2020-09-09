@@ -15,6 +15,7 @@ class CLI
         if !input.to_i.between?(1, Month.all.length)
             puts "Please choose a number from the list! ;)"
                 list_months
+                month_menu
         else
             puts "Great choice!\n\n"
             name = Month.all[input.to_i-1]
