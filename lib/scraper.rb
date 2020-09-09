@@ -7,14 +7,18 @@ class Scraper
     def self.scrape_months
         html = open(MONTH_URL)
         doc = Nokogiri::HTML(html)
-        # doc.css("div.col-sm-2.col-md-2").each do |month|
         doc.css("select#monthFilter.form-control.input-sm").text.strip.split("\n                ").slice(1, 13).each do |name|
-            # months.each do |name| 
             position, mon = name.split(" - ")
-            # binding.pry
-            Month.new(mon) 
-            end
-        # end
+            Month.new(mon, position) 
+        end
+    end
+    def self.scrape_month_details(name)
+        html = open(MONTH_URL+"/"+name.position)
+        doc = Nokogiri::HTML(html)
+        doc.css("section#archives.section").each do |days|
+            name.each_day = days.css(".show a").text.strip
+            name.day_url = days.css("a").attr("href").value
+        end
     end
     # def self.scrape_workouts
     #     html = open(WORKOUT_URL)
@@ -34,16 +38,3 @@ class Scraper
     # end
 
 end
-
-# doc.css("select#monthFilter.form-control.input-sm option[02]").text
-# doc.css("select#monthFilter.form-control.input-sm option[03]").text
-# doc.css("select#monthFilter.form-control.input-sm option[04]").text
-# doc.css("select#monthFilter.form-control.input-sm option[05]").text
-# doc.css("select#monthFilter.form-control.input-sm option[06]").text
-# doc.css("select#monthFilter.form-control.input-sm option[07]").text
-# doc.css("select#monthFilter.form-control.input-sm option[08]").text
-# doc.css("select#monthFilter.form-control.input-sm option[09]").text
-# doc.css("select#monthFilter.form-control.input-sm option[10]").text
-# doc.css("select#monthFilter.form-control.input-sm option[11]").text
-# doc.css("select#monthFilter.form-control.input-sm option[12]").text
-# doc.css("select#monthFilter.form-control.input-sm option[13]").text

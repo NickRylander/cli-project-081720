@@ -4,6 +4,7 @@ class CLI
         puts "Please choose a month!"
         Scraper.scrape_months
         list_months
+        month_menu
         # Scraper.scrape_workouts
         # puts "Please choose a number (1 - #{Workout.all.length}) to see the details of each workout: "
         # list_workouts
@@ -17,7 +18,18 @@ class CLI
     def list_months
         Month.all.each.with_index(1) do | name, i|
             puts "#{i}. #{name.mon}"
-            # binding.pry
+        end
+    end
+    def month_menu
+        puts "Please type in the number that associates with the month you'd like to see!"
+        input = gets.chomp
+        if !input.to_i.between?(1, Month.all.length)
+            puts "Please choose a number from the list! ;)"
+                list_months
+        else
+            puts "Great choice!\n\n"
+            name = Month.all[input.to_i-1]
+            month_details(name)
         end
     end
     # def menu
@@ -51,4 +63,12 @@ class CLI
     #     puts "Workout Details:\n\n"
     #     puts "#{workout.details}\n ---END---"
     # end
+    def month_details(name)
+        Scraper.scrape_month_details(name)
+        puts "You chose: #{name.mon}.\n\n"
+        puts "Here is a list of all the days in #{name.mon}:\n\n"
+        self.all.each.with_index(1) do | each_day, i|
+            puts "#{i}. #{name.each_day}"
+        end
+    end
 end
