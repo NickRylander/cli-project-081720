@@ -3,11 +3,11 @@
 require 'pry'
 require 'open-uri'
 require 'nokogiri'
-require 'net/http'
-require 'json'
+
 require_relative '../lib/scraper'
 require_relative '../lib/workout'
 require_relative '../lib/month'
 require_relative '../lib/cli'
+require_relative '../lib/day'
 
 CLI.new.run

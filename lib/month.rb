@@ -1,12 +1,12 @@
 class Month
     @@all = []
 
-    attr_accessor :mon, :position, :each_day, :day_url
+    attr_accessor :mon, :position, :every_day, :day_url
 
     def initialize(mon, position)
         @mon = mon
         @position = position
-        @each_day = each_day
+        @every_day = every_day
         @day_url = day_url
         @@all << self
     end

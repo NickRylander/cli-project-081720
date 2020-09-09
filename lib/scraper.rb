@@ -16,8 +16,8 @@ class Scraper
         html = open(MONTH_URL+"/"+name.position)
         doc = Nokogiri::HTML(html)
         doc.css("section#archives.section").each do |days|
-            name.each_day = days.css(".show a").text.strip
-            name.day_url = days.css("a").attr("href").value
+            name.every_day = days.css(".show a").text.split
+            binding.pry
         end
     end
     # def self.scrape_workouts

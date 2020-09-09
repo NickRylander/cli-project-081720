@@ -67,8 +67,6 @@ class CLI
         Scraper.scrape_month_details(name)
         puts "You chose: #{name.mon}.\n\n"
         puts "Here is a list of all the days in #{name.mon}:\n\n"
-        self.all.each.with_index(1) do | each_day, i|
-            puts "#{i}. #{name.each_day}"
-        end
+        puts "#{name.every_day}"
     end
 end
