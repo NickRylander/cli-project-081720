@@ -15,9 +15,10 @@ class Scraper
     def self.scrape_month_details(name)
         html = open(MONTH_URL+"/"+name.position)
         doc = Nokogiri::HTML(html)
-        doc.css("section#archives.section").each do |days|
-            name.every_day = days.css(".show a").text.split
-            binding.pry
+        doc.css("section#archives.section").css(".show a").each do |day|
+            date, year_month_day = day.text.split
+            # binding.pry
+            Day.new(date, year_month_day)
         end
     end
     # def self.scrape_workouts
