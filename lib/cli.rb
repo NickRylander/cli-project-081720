@@ -29,7 +29,7 @@ class CLI
             list_days
         else
             puts "Great choice! Ready to sweat?"
-            workout = Day.all[input.to_i-1]
+            workout = Day.all.reverse[input.to_i-1]
             Scraper.scrape_details(workout)
             display_details(workout)
             puts "Haven't had enough?! Want to see another?"
@@ -70,7 +70,7 @@ class CLI
         end
     end
     def list_days
-        Day.all.each.with_index(1) do | day, i|
+        Day.all.reverse.each.with_index(1) do | day, i|
             puts "#{i}. #{day.date} - #{day.url}"
         end
     end

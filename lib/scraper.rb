@@ -23,6 +23,5 @@ class Scraper
         html = open(RELATIVE_URL+day.url)
         doc = Nokogiri::HTML(html)
         day.details = doc.css("div._6zX5t4v71r1EQ1b1O0nO2.jYZW249J9cFebTPrzuIl0").text
-        binding.pry
     end
 end
